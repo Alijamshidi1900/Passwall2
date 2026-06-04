@@ -1,0 +1,42 @@
+apk update
+
+apk del dnsmasq
+
+apk add dnsmasq-full
+
+apk add kmod-nft-tproxy
+
+apk add kmod-nft-socket
+
+wget -O /etc/apk/keys/passwall.pem https://master.dl.sourceforge.net/project/openwrt-passwall-build/apk.pub -O /etc/apk/keys/passwall.pem
+
+read release arch << EOF
+$(. /etc/openwrt_release ; echo ${DISTRIB_RELEASE%.*} $DISTRIB_ARCH)
+EOF
+for feed in passwall_packages passwall2; do
+  echo "https://master.dl.sourceforge.net/project/openwrt-passwall-build/releases/packages-$release/$arch/$feed/packages.adb" >> /etc/apk/repositories.d/customfeeds.list
+done
+
+apk update
+
+apk add luci-app-passwall2
+
+apk add sing-box
+
+apk add xray-core v2ray-geosite-ir
+
+apk update
+
+==========================
+
+for s in $(uci show passwall2 | sed -n 's/^passwall2\.\([^=]*\)=shunt_rules$/\1/p'); do uci delete passwall2.$s; done && uci commit passwall2
+uci -q delete passwall2.Iran
+
+uci set passwall2.Iran='shunt_rules'
+uci set passwall2.Iran.remarks='Iran'
+uci set passwall2.Iran.network='tcp,udp'
+uci set passwall2.Iran.domain_list='geosite:category-ir
+ext:iran.dat:all'
+uci set passwall2.Iran.ip_list='geoip:ir'
+
+uci commit passwall2
