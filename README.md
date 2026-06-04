@@ -19,6 +19,7 @@
 https://downloads.openwrt.org/releases/25.12.4/targets/
 
 بروز رسانی مخازن:
+
 apk update
 حذف بسته dnsmasq ساده و نصب dnsmasq-full :
 apk del dnsmasq
