@@ -21,7 +21,7 @@ https://downloads.openwrt.org/releases/25.12.4/targets/
 ==============================================
 نصب: 
 
-ssh root@192.168.123.1 (Your Router's IP)
+#ssh root@192.168.123.1 (Your Router's IP)
 
 apk update
 
