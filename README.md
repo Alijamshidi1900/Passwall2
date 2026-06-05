@@ -18,6 +18,11 @@
 دانلود و نصب آخرین نسخه OpenWRT از وبسایت اصلی  :
 https://downloads.openwrt.org/releases/25.12.4/targets/
 
+==============================================
+نصب: 
+
+ssh root@192.168.123.1 (Your Router's IP)
+
 apk update
 
 apk del dnsmasq
