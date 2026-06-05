@@ -53,11 +53,14 @@ apk add xray-core v2ray-geosite-ir
 apk update
 
 ==========================
+
 حذف قوانین فعلی :
 
 
 for s in $(uci show passwall2 | sed -n 's/^passwall2\.\([^=]*\)=shunt_rules$/\1/p'); do uci delete passwall2.$s; done && uci commit passwall2
 uci -q delete passwall2.Iran
+
+
 اضافه کردن لیست دامنه ها و آدرس های ایرانی (بر پایه bootmortis) :
 
 
