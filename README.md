@@ -54,14 +54,14 @@ apk update
 
 ==========================
 
-حذف قوانین فعلی :
+حذف قوانین فعلی-- :
 
 
 for s in $(uci show passwall2 | sed -n 's/^passwall2\.\([^=]*\)=shunt_rules$/\1/p'); do uci delete passwall2.$s; done && uci commit passwall2
 uci -q delete passwall2.Iran
 
 
-اضافه کردن لیست دامنه ها و آدرس های ایرانی (بر پایه bootmortis) :
+اضافه کردن لیست دامنه ها و آدرس های ایرانی-- (بر پایه bootmortis) :
 
 
 
@@ -74,7 +74,7 @@ uci set passwall2.Iran.ip_list='geoip:ir'
 
 uci commit passwall2
 
--اضافه کردن لیست وبسایتهای ایرانی دارای ضعف امنیتی rebind attack. (اختیاری):
+--اضافه کردن لیست وبسایتهای ایرانی دارای ضعف امنیتی rebind attack. (اختیاری):
 
 
 uci add_list dhcp.@dnsmasq[0].rebind_domain='banksepah.ir'
